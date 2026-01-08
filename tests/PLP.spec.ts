@@ -11,8 +11,8 @@ test.describe('PLP tests', () => {
         await expect(app.plp.addToCart).toBeVisible()
     })
 
-    test('Go to PDP of the selected product', async ({ app, page }) => {
+    test('Go to PDP of the selected product', async ({ app }) => {
         await app.plp.goToPDP()
-        expect(page.url).toContain("https://shopusa.fujifilm-x.com/xf56mmf1-2-r-wr-xf56mmf1-2-r-wr/")
+        expect(app.page.url()).toContain("https://shopusa.fujifilm-x.com/xf56mmf1-2-r-wr-xf56mmf1-2-r-wr/")
     })
 })
