@@ -9,11 +9,15 @@ export default class PLP extends BasePage {
     public quickShopOptionsOutOfStock: Locator = this.page.locator('button[title="Quick Buy Options For GF45-100mmF4"]')
     public paginationNext: Locator = this.page.locator('.pages-item-next')
     public paginationPrevious: Locator = this.page.locator('.pages-item-previous')
-    public addToCart: Locator = this.page.locator('button[title="Add XF56mmF1.2 R WR Lens to Cart"]')
+    public addToCart: Locator = this.page.locator('button[title="Add XF56mmF1.2 R WR Lens - FACTORY REFURBISHED to Cart"]')
     public learnMoreButton: Locator = this.page.locator('a.btn-secondary[title="Learn More About XF56mmF1.2 R WR"]')
+    public outOfStockLocatorButton: Locator = this.page.locator('.product-container[x-data*="productId: 3545"] a.product-action[href*="store-locator"]')
+    public paginationElement: Locator = this.page.locator('.item.-ml-px')
+    public paginationNextVerification: Locator = this.page.locator('a[aria-label="Next"]')
+    public paginationPreviousVerification: Locator = this.page.locator('a[aria-label="Previous"]')
 
-    async expandOptions(){
-        await this.quickShopOptionsInStock.click()
+    async expandOptions(locator: Locator){
+        await locator.click()
     }
 
     async addProduct(){
@@ -23,5 +27,18 @@ export default class PLP extends BasePage {
 
     async goToPDP(){
         await this.learnMoreButton.click()
+    }
+
+    async goToPage(pageNumber: string){
+        const targetPage = this.paginationElement.getByText(pageNumber)
+        await targetPage.click()
+    }
+
+    async goToNextPage(){
+        await this.paginationNext.click()
+    }
+
+    async goToPreviousPage(){
+        await this.paginationPrevious.click()
     }
 }
