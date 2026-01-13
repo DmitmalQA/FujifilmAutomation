@@ -15,7 +15,7 @@ test.describe('PLP tests', () => {
         await app.plp.goToPDP()
         expect(app.page.url()).toContain("https://shopusa.fujifilm-x.com/xf56mmf1-2-r-wr-xf56mmf1-2-r-wr/")
     })
-
+    
     test('Expand options for a product out of stock', async ({ app }) => {
         await app.plp.goToPage("3")
         await app.plp.expandOptions(app.plp.quickShopOptionsOutOfStock)
