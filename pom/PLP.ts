@@ -15,6 +15,9 @@ export default class PLP extends BasePage {
     public paginationElement: Locator = this.page.locator('.item.-ml-px')
     public paginationNextVerification: Locator = this.page.locator('a[aria-label="Next"]')
     public paginationPreviousVerification: Locator = this.page.locator('a[aria-label="Previous"]')
+    public filterMountLens: Locator = this.page.locator('button[aria-label="Lens Mount filter"]')
+    private filterOptionMountLens: Locator = this.page.locator('a[href*="?lens_mount"]').first()
+    public activeFilterOption: Locator = this.page.locator('a[class*=active-filter]')
 
     async expandOptions(locator: Locator){
         await locator.click()
@@ -40,5 +43,13 @@ export default class PLP extends BasePage {
 
     async goToPreviousPage(){
         await this.paginationPrevious.click()
+    }
+
+    async openMountLensFilter(){
+        await this.filterMountLens.click()
+    }
+
+    async applyFirstFilterOption(){
+        await this.filterOptionMountLens.click()
     }
 }

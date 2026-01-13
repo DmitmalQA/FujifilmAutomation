@@ -8,7 +8,7 @@ test.describe('PLP tests', () => {
 
     test('Expand options for product in stock', async ({ app }) => {
         await app.plp.expandOptions(app.plp.quickShopOptionsInStock)
-        await expect(app.plp.addToCart).toBeVisible()
+        await expect(app.plp.addToCart).toBeVisible
     })
 
     test('Go to PDP of the selected product', async ({ app }) => {
@@ -30,7 +30,7 @@ test.describe('PLP tests', () => {
     test('Go to a previous page on pagination, including going to a custom page', async ({ app }) => {
         await app.plp.goToPage("4")
         await app.plp.goToPreviousPage()
-        await expect(app.page.url()).toContain("p=3")
+        expect(app.page.url()).toContain("p=3")
     })
 
     test('Go to the last page on pagination', async ({ app }) => {
@@ -46,5 +46,16 @@ test.describe('PLP tests', () => {
         await app.plp.goToPreviousPage()
         disabledState = await app.plp.paginationNextVerification.getAttribute("aria-disabled")
         expect(disabledState).toBe(null)
+    })
+
+    test('Open the Mount Lens filter', async ({ app }) => {
+        await app.plp.openMountLensFilter()
+        await expect(app.plp.filterMountLens).toHaveAttribute("aria-expanded", "true")
+    })
+
+    test('Applying the Mount Lens filter', async ({ app }) => {
+        await app.plp.openMountLensFilter()
+        await app.plp.applyFirstFilterOption()
+        await expect(app.plp.activeFilterOption).toBeVisible
     })
 })
